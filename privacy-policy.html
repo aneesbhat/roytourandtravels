@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Roy Tour & Travels | Premium Kashmir Aesthetics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .policy-hero {
+            height: 40vh;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .policy-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+        }
+
+        .policy-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .policy-content-section {
+            padding: 80px 0;
+        }
+
+        .policy-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            gap: 30px;
+        }
+
+        .policy-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .policy-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .policy-card h3 i {
+            font-size: 1.2rem;
+        }
+
+        .policy-card ul {
+            margin-top: 15px;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .policy-card ul li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+    </style>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <!-- JS -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/919876543210?text=Hello" class="fab-btn btn-whatsapp" aria-label="WhatsApp"><i
+                class="fab fa-whatsapp"></i></a>
+        <a href="tel:+911234567890" class="fab-btn btn-phone" aria-label="Call Now"><i class="fas fa-phone-alt"></i></a>
+        <button class="fab-btn btn-ai" aria-label="AI Chat Bot"><i class="fas fa-robot"></i></button>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header" id="header"
+        style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: var(--shadow-sm); padding: 10px 0;">
+        <div class="container header-container">
+            <div class="brand">
+                <a href="index.html" class="logo-wrapper">
+                    <img src="images/logo circular footer.png" alt="">
+                    <div class="brand-text">
+                        <span class="company-name" style="color: var(--text-dark);">Roy Tour & Travels</span>
+                        <span class="company-quote" style="color: var(--text-muted);">Aesthetics of Kashmir</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html" style="color: var(--text-dark);">Home</a></li>
+                    <li><a href="about.html" style="color: var(--text-dark);">About</a></li>
+                    <li><a href="index.html#packages" style="color: var(--text-dark);">Packages</a></li>
+                    <li><a href="contact.html" style="color: var(--text-dark);">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle" aria-label="Toggle Menu" style="color: var(--text-dark);">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Off-Canvas Menu -->
+    <div class="off-canvas-menu" id="offCanvas">
+        <div class="off-canvas-header">
+            <span class="company-name">Roy Tour & Travels</span>
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#packages">Packages</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-actions"
+            style="display: flex; flex-direction: row; gap: 8px; justify-content: center; margin-top: auto; padding: 0 10px;">
+            <a href="tel:+911234567890" class="mobile-btn btn-call"
+                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 0.85rem;"><i
+                    class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="https://wa.me/919876543210?text=Hello" class="mobile-btn btn-whatsapp-mob"
+                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 0.85rem;"><i
+                    class="fab fa-whatsapp"></i>WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Policy Hero -->
+    <section class="policy-hero">
+        <div class="policy-hero-content">
+            <h1 class="gsap-reveal">Privacy Policy</h1>
+            <p class="gsap-reveal">Your trust is our priority. Learn how we protect your data.</p>
+        </div>
+    </section>
+
+    <!-- Policy Content -->
+    <section class="policy-content-section">
+        <div class="container">
+            <div class="policy-grid">
+                <!-- Card 1 -->
+                <div class="policy-card tilt-card">
+                    <h3><i class="fas fa-user-shield"></i> Data Collection & Usage</h3>
+                    <p>We collect personal information primarily to facilitate your tour bookings and provide
+                        personalized travel services in Kashmir. This includes:</p>
+                    <ul>
+                        <li>Full name, nationality, and contact information (Email, Phone).</li>
+                        <li>Travel document details (Aadhar/Passport) required for local permits.</li>
+                        <li>Payment details processed through secure third-party gateways.</li>
+                        <li>Preferences such as dietary requirements or accessibility needs.</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="policy-card tilt-card">
+                    <h3><i class="fas fa-lock"></i> Data Security & Retention</h3>
+                    <p>Roy Tour & Travels employs advanced encryption to protect your data. We retain your information
+                        only as long as necessary:</p>
+                    <ul>
+                        <li>Booking records are kept for 2 years for auditing and tax purposes.</li>
+                        <li>Identity proofs are deleted immediately after the tour concludes and permits expire.</li>
+                        <li>Regular security audits are performed on our digital infrastructure.</li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="policy-card tilt-card">
+                    <h3><i class="fas fa-share-alt"></i> Third-Party Sharing</h3>
+                    <p>We do not sell your data. However, sharing is essential for service delivery:</p>
+                    <ul>
+                        <li><strong>Hotels:</strong> Guest names and IDs for check-in.</li>
+                        <li><strong>Transport:</strong> Driver coordination for pick-ups.</li>
+                        <li><strong>Authorities:</strong> Mandatory permit registration in sensitive areas.</li>
+                    </ul>
+                </div>
+                <!-- Card 4 -->
+                <div class="policy-card tilt-card">
+                    <h3><i class="fas fa-user-check"></i> Your Rights</h3>
+                    <p>You have full control over your data stored with us. At any time, you may:</p>
+                    <ul>
+                        <li>Request a copy of the data we hold about you.</li>
+                        <li>Ask for immediate correction of any inaccuracies.</li>
+                        <li>Request the deletion of your personal records (subject to legal obligations).</li>
+                        <li>Opt-out of our marketing newsletters via a single click.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo circular footer.png" alt=" Roy Tour & Travels Logo"
+                            class="footer-logo-img">
+                        <div class="brand-text">
+                            <span class="company-name">Roy Tour & Travels</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc mt-3">Premium travel experiences in Kashmir. We specialize in customized
+                        tours, honeymoon packages, and family vacations.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#packages">Tour Packages</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Top Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#destinations">All Kashmir Destinations</a></li>
+                        <li><a href="#">Srinagar</a></li>
+                        <li><a href="#">Gulmarg</a></li>
+                        <li><a href="#">Pahalgam</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919876543210?text=Hello">WhatsApp
+                                Us</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:info@roytourstravels.com">info@roytourstravels.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Dal Lake Boulevard, Srinagar, J&K 190001</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <ul class="useful-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="developer-credit text-center mt-4">
+                <p>© 2026 Roy Tour & Travels | Developed by <strong>Anees Irshad Bhat</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap !== 'undefined') {
+                gsap.from('.gsap-reveal', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power3.out"
+                });
+
+                gsap.from('.policy-card', {
+                    scrollTrigger: {
+                        trigger: '.policy-grid',
+                        start: "top 85%"
+                    },
+                    y: 40,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power2.out"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Roy Tour & Travels | Premium Kashmir Aesthetics</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Get in touch with Roy Tour & Travels for premium Kashmir tours. We're here to help you plan your perfect vacation.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <!-- JS -->
+    <script src="script.js" defer></script>
+    <style>
+        /* Specific Styles for Video Banner */
+        .video-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .video-hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-page-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 991px) {
+            .contact-page-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/919876543210?text=Hello" class="fab-btn btn-whatsapp" aria-label="WhatsApp"><i
+                class="fab fa-whatsapp"></i></a>
+        <a href="tel:+911234567890" class="fab-btn btn-phone" aria-label="Call Now"><i class="fas fa-phone-alt"></i></a>
+        <button class="fab-btn btn-ai" aria-label="AI Chat Bot"><i class="fas fa-robot"></i></button>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <div class="brand">
+                <a href="index.html" class="logo-wrapper">
+                    <img src="images/logo circular footer.png" alt="">
+                    <div class="brand-text">
+                        <span class="company-name">Roy Tour & Travels</span>
+                        <span class="company-quote">Aesthetics of Kashmir</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html#packages">Packages</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Off-Canvas Menu for Mobile -->
+    <div class="off-canvas-menu" id="offCanvas">
+        <div class="off-canvas-header">
+            <span class="company-name">Roy Tour & Travels</span>
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#packages">Packages</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-actions"
+            style="display: flex; flex-direction: row; gap: 8px; justify-content: center; margin-top: auto; padding: 0 10px;">
+            <a href="tel:+911234567890" class="mobile-btn btn-call"
+                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 0.85rem;"><i
+                    class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="https://wa.me/919876543210?text=Hello" class="mobile-btn btn-whatsapp-mob"
+                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 0.85rem;"><i
+                    class="fab fa-whatsapp"></i>WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Video Banner -->
+    <section class="video-hero">
+        <img src="images/contact banner.png" class="video-background" alt="">
+        <div class="video-overlay"></div>
+        <div class="container video-hero-content">
+            <h1 class="hero-title">Contact Roy Tour & Travels</h1>
+            <p class="hero-desc">We're here to help you plan your dream Kashmir vacation.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-section section-padding">
+        <div class="container">
+            <div class="contact-page-layout">
+                <!-- Contact Info Left -->
+                <div class="contact-info-side">
+                    <div class="section-header">
+                        <h2>Our Contact Details</h2>
+                        <p>Feel free to reach out via any of these channels. We're available 24/7.</p>
+                    </div>
+                    
+                    <div class="contact-details-grid">
+                        <div class="info-box gradient-border tilt-card">
+                            <div class="icon gradient-text"><i class="fas fa-phone-alt"></i></div>
+                            <div class="content">
+                                <h4>Phone</h4>
+                                <p>+91 98765 43210</p>
+                                <p>+91 12345 67890</p>
+                            </div>
+                        </div>
+                        <div class="info-box gradient-border tilt-card">
+                            <div class="icon gradient-text"><i class="fas fa-envelope"></i></div>
+                            <div class="content">
+                                <h4>Email</h4>
+                                <p>info@roytourstravels.com</p>
+                                <p>bookings@roytourstravels.com</p>
+                            </div>
+                        </div>
+                        <div class="info-box gradient-border tilt-card">
+                            <div class="icon gradient-text"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="content">
+                                <h4>Office Address</h4>
+                                <p>Dal Lake Boulevard, Srinagar,<br>Jammu & Kashmir 190001</p>
+                            </div>
+                        </div>
+                        <div class="info-box gradient-border tilt-card">
+                            <div class="icon gradient-text"><i class="fas fa-clock"></i></div>
+                            <div class="content">
+                                <h4>Office Hours</h4>
+                                <p>Monday - Sunday<br>Open 24/7</p>
+                            </div>
+                        </div>
+                        <div class="info-box gradient-border tilt-card">
+                            <div class="icon gradient-text"><i class="fas fa-globe"></i></div>
+                            <div class="content">
+                                <h4>Website</h4>
+                                <p>www.roytourstravels.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Box -->
+                    <div class="map-box mt-5">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105658.62312644265!2d74.721471!3d34.083656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f08f0605db3%3A0x633519d53c7ad3db!2sSrinagar!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin"
+                            width="100%" height="400" style="border:0; border-radius: var(--border-radius-md);"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <!-- Contact Form Right -->
+                <div class="contact-form-side">
+                    <div class="contact-form-container glass-panel">
+                        <form id="bookingForm" class="booking-form" action="#" method="POST">
+                            <h3>Book Your Journey</h3>
+                            <p class="mb-4">Fill out the form below and we will get back to you within 2 hours.</p>
+    
+                            <!-- Honeypot Anti-Spam (Hidden) -->
+                            <div style="display:none;">
+                                <label for="honeypot">Leave this field blank</label>
+                                <input type="text" id="honeypot" name="honeypot">
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <div class="input-glow">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <div class="input-glow">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <div class="input-glow">
+                                    <i class="fas fa-phone input-icon"></i>
+                                    <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+                                </div>
+                            </div>
+    
+                            <!-- Ticket Status Radios -->
+                            <div class="form-group tickets-group">
+                                <label class="d-block mb-2">Are your tickets booked? *</label>
+                                <div class="radio-wrapper">
+                                    <label class="radio-btn">
+                                        <input type="radio" name="ticketsBooked" value="yes" required>
+                                        <span class="custom-radio"></span> Yes
+                                    </label>
+                                    <label class="radio-btn">
+                                        <input type="radio" name="ticketsBooked" value="no">
+                                        <span class="custom-radio"></span> No
+                                    </label>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="travelDate">Travel Date <span id="dateAsterisk">*</span></label>
+                                <div class="input-glow">
+                                    <i class="fas fa-calendar-alt input-icon"></i>
+                                    <input type="date" id="travelDate" name="travelDate" required>
+                                </div>
+                                <small class="text-muted mt-1" id="dateHint">Date is not required if tickets are not
+                                    booked.</small>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="message">Additional Message</label>
+                                <div class="input-glow">
+                                    <textarea id="message" name="message" rows="4"
+                                        placeholder="Tell us about any specific requirements..."></textarea>
+                                </div>
+                            </div>
+    
+                            <button type="submit" class="btn btn-primary gradient-btn w-100 btn-submit mt-3">
+                                <span>Submit Request</span> <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+    
+                        <!-- Success Message Container -->
+                        <div id="formSuccess" class="form-success text-center">
+                            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                            <h3>Request Received!</h3>
+                            <p>Thank you for reaching out to Roy Tour & Travels. Our executive will contact you shortly to
+                                plan your dream vacation.</p>
+                            <button class="btn btn-secondary mt-3" id="resetFormBtn">Send Another Inquiry</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Info -->
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo circular footer.png" alt=" Roy Tour & Travels Logo"
+                            class="footer-logo-img">
+                        <div class="brand-text">
+                            <span class="company-name">Roy Tour & Travels</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc mt-3">Premium travel experiences in Kashmir. We specialize in customized
+                        tours, honeymoon packages, and family vacations.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#packages">Tour Packages</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Destinations -->
+                <div class="footer-col">
+                    <h4>Top Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#destinations">All Kashmir Destinations</a></li>
+                        <li><a href="#">Srinagar</a></li>
+                        <li><a href="#">Gulmarg</a></li>
+                        <li><a href="#">Pahalgam</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919876543210?text=Hello">WhatsApp
+                                Us</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:info@roytourstravels.com">info@roytourstravels.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Dal Lake Boulevard, Srinagar, J&K 190001</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+
+            <!-- Footer Bottom Layout -->
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+
+                <ul class="useful-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="developer-credit text-center mt-4">
+                <p>© 2026 Roy Tour & Travels | Developed by <strong>Anees Irshad Bhat</strong></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

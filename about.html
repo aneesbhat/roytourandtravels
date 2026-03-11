@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Roy Tour & Travels | Premium Kashmir Aesthetics</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Learn about Roy Tour & Travels, our mission, vision, and the team dedicated to making your Kashmir journey unforgettable.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific Styles for About Page */
+        .about-hero {
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            perspective: 1000px;
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+            transform: translateZ(50px);
+        }
+
+        .story-section {
+            background: white;
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+
+        .story-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .mission-card {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            border: 1px solid rgba(209, 0, 86, 0.1);
+            transition: var(--transition);
+        }
+
+        .mission-card i {
+            font-size: 3rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .team-member {
+            position: relative;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .team-member:hover .team-info {
+            transform: translateY(0);
+        }
+    </style>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <!-- JS -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/919876543210?text=Hello" class="fab-btn btn-whatsapp" aria-label="WhatsApp"><i
+                class="fab fa-whatsapp"></i></a>
+        <a href="tel:+911234567890" class="fab-btn btn-phone" aria-label="Call Now"><i class="fas fa-phone-alt"></i></a>
+        <button class="fab-btn btn-ai" aria-label="AI Chat Bot"><i class="fas fa-robot"></i></button>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <div class="brand">
+                <a href="index.html" class="logo-wrapper">
+                    <img src="images/logo circular footer.png" alt="">
+                    <div class="brand-text">
+                        <span class="company-name">Roy Tour & Travels</span>
+                        <span class="company-quote">Aesthetics of Kashmir</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html#packages">Packages</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Off-Canvas Menu for Mobile -->
+    <div class="off-canvas-menu" id="offCanvas">
+        <div class="off-canvas-header">
+            <span class="company-name">Roy Tour & Travels</span>
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#packages">Packages</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-actions"
+            style="display: flex; flex-direction: row; gap: 8px; justify-content: center; margin-top: auto; padding: 0 10px;">
+            <a href="tel:+911234567890" class="mobile-btn btn-call"
+                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 0.85rem;"><i
+                    class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="https://wa.me/919876543210?text=Hello" class="mobile-btn btn-whatsapp-mob"
+                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 0px; padding: 0; font-size: 0.85rem;"><i
+                    class="fab fa-whatsapp"></i>WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1 class="gsap-reveal-hero">Our Journey in Kashmir</h1>
+            <p class="gsap-reveal-hero">Crafting unforgettable memories in the heart of Paradise.</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section section-padding">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <div class="section-header">
+                        <h2>The Roy Legacy</h2>
+                        <p>Established with a passion for Kashmir's untouched beauty, Roy Tour & Travels has been the
+                            preferred choice for thousands of travelers seeking authentic experiences.</p>
+                    </div>
+                    <p class="mb-4">From the snowy peaks of Gulmarg to the tranquil Dal Lake, our deep-rooted local
+                        knowledge allows us to craft itineraries that go beyond the ordinary.</p>
+                    <p>We don't just provide tours; we provide entry into the Kashmiri way of life, ensuring every
+                        moment is steeped in hospitality and wonder.</p>
+                </div>
+                <div class="story-image tilt-card">
+                    <img src="https://images.unsplash.com/photo-1566838634149-a72cb3f9e9cf?q=80&w=800&auto=format&fit=crop"
+                        alt="Kashmir Beauty">
+                </div>
+            </div>
+
+            <!-- Mission & Vision Cards -->
+            <div class="mission-vision">
+                <div class="mission-card tilt-card glass-panel">
+                    <i class="fas fa-eye"></i>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading curator of premium Kashmiri experiences, setting the standard for sustainable
+                        and authentic tourism in the valley.</p>
+                </div>
+                <div class="mission-card tilt-card glass-panel">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission</h3>
+                    <p>To bridge the gap between travelers and the soul of Kashmir through personalized service, local
+                        expertise, and unwavering dedication.</p>
+                </div>
+                <div class="mission-card tilt-card glass-panel">
+                    <i class="fas fa-heart"></i>
+                    <h3>Our Values</h3>
+                    <p>Integrity, hospitality, and a commitment to preserving the pristine beauty of our homeland guide
+                        every decision we make.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars of Excellence Section -->
+    <section class="pillars-section section-padding bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Our Pillars of Excellence</h2>
+                <p>What makes Roy Tour & Travels the most trusted name in Kashmiri hospitality.</p>
+            </div>
+            <div class="features-grid">
+                <!-- Pillar 1 -->
+                <div class="feature-card tilt-card glass-panel" style="background: white;">
+                    <div class="icon-box gradient-bg"
+                        style="width: 60px; height: 60px; font-size: 1.5rem; border-radius: 15px;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 style="margin-top: 15px;">Tailored Luxury</h3>
+                    <p>We redefine luxury by providing bespoke experiences that reflect your personal tastes, from
+                        private shikara dinners to high-altitude luxury stays.</p>
+                </div>
+                <!-- Pillar 2 -->
+                <div class="feature-card tilt-card glass-panel" style="background: white;">
+                    <div class="icon-box gradient-bg"
+                        style="width: 60px; height: 60px; font-size: 1.5rem; border-radius: 15px;">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3 style="margin-top: 15px;">Local Roots</h3>
+                    <p>Born and raised in the valley, our team has access to hidden meadows and exclusive cultural
+                        experiences that regular tour operators simply don't know exist.</p>
+                </div>
+                <!-- Pillar 3 -->
+                <div class="feature-card tilt-card glass-panel" style="background: white;">
+                    <div class="icon-box gradient-bg"
+                        style="width: 60px; height: 60px; font-size: 1.5rem; border-radius: 15px;">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 style="margin-top: 15px;">Sustainable Path</h3>
+                    <p>We believe in preserving the "Aesthetics of Kashmir". Our operations are designed to support
+                        local artisans and protect the delicate Himalayan ecosystem.</p>
+                </div>
+                <!-- Pillar 4 -->
+                <div class="feature-card tilt-card glass-panel" style="background: white;">
+                    <div class="icon-box gradient-bg"
+                        style="width: 60px; height: 60px; font-size: 1.5rem; border-radius: 15px;">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 style="margin-top: 15px;">24/7 Concierge</h3>
+                    <p>Your peace of mind is our priority. From the moment you land to your last sunset in the valley,
+                        our concierge team is always a phone call away.</p>
+                </div>
+            </div>
+
+            <!-- Detailed 3D Element: Interactive Stats/Highlights -->
+            <div class="detailed-highlights mt-5" style="perspective: 1500px;">
+                <div class="glass-panel"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 50px; border-radius: var(--border-radius-lg); transform: rotateX(5deg);">
+                    <div class="highlight-item text-center">
+                        <h2 class="counter" data-target="15" style="margin: 0; display: block;">0</h2>
+                        <span style="font-weight: bold; color: var(--primary-color);">Years of Expertise</span>
+                    </div>
+                    <div class="highlight-item text-center">
+                        <h2 class="counter" data-target="5000" style="margin: 0; display: block;">0</h2>
+                        <span style="font-weight: bold; color: var(--primary-color);">Happy Journeys</span>
+                    </div>
+                    <div class="highlight-item text-center">
+                        <h2 class="counter" data-target="100" style="margin: 0; display: block;">0</h2>
+                        <span style="font-weight: bold; color: var(--primary-color);">Verified Partners</span>
+                    </div>
+                    <div class="highlight-item text-center">
+                        <h2 class="counter" data-target="24" style="margin: 0; display: block;">0</h2>
+                        <span style="font-weight: bold; color: var(--primary-color);">Global Awards</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Info -->
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo circular footer.png" alt=" Roy Tour & Travels Logo"
+                            class="footer-logo-img">
+                        <div class="brand-text">
+                            <span class="company-name">Roy Tour & Travels</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc mt-3">Premium travel experiences in Kashmir. We specialize in customized
+                        tours, honeymoon packages, and family vacations.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#packages">Tour Packages</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Destinations -->
+                <div class="footer-col">
+                    <h4>Top Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#destinations">All Kashmir Destinations</a></li>
+                        <li><a href="#">Srinagar</a></li>
+                        <li><a href="#">Gulmarg</a></li>
+                        <li><a href="#">Pahalgam</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919876543210?text=Hello">WhatsApp
+                                Us</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:info@roytourstravels.com">info@roytourstravels.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Dal Lake Boulevard, Srinagar, J&K 190001</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <ul class="useful-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="developer-credit text-center mt-4">
+                <p>© 2026 Roy Tour & Travels | Developed by <strong>Anees Irshad Bhat</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // About Page Specific GSAP
+            if (typeof gsap !== 'undefined') {
+                gsap.from('.gsap-reveal-hero', {
+                    y: 100,
+                    opacity: 0,
+                    duration: 1.2,
+                    stagger: 0.3,
+                    ease: "power4.out"
+                });
+
+                gsap.from('.story-image', {
+                    scrollTrigger: {
+                        trigger: '.story-grid',
+                        start: "top 80%"
+                    },
+                    x: 100,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+
+                gsap.from('.mission-card', {
+                    scrollTrigger: {
+                        trigger: '.mission-vision',
+                        start: "top 85%"
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "back.out(1.7)"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
