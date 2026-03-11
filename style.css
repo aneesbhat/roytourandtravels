@@ -1572,7 +1572,7 @@ h2 {
     height: 46px;
     border-radius: 50%;
     margin: 0 auto 8px;
-    background: linear-gradient(135deg, #d10056 0%, #ff9a44 100%);
+    background: linear-gradient(135deg, #fff 0%, #81807f 100%);
     display: flex;
     align-items: center;
     justify-content: center;
