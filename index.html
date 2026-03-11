@@ -42,7 +42,7 @@
                     <img src="images/logo circular footer.png" alt="">
                     <div class="brand-text">
                         <span class="company-name">Roy Tour & Travels</span>
-                        <span class="company-quote">Experience the beauty of Kashmir</span>
+                        <span class="company-quote">Aesthetics of Kashmir</span>
                     </div>
                 </a>
             </div>
@@ -74,14 +74,28 @@
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
-        <div class="mobile-actions"
-            style="display: flex; flex-direction: row; gap: 8px; justify-content: center; margin-top: auto; padding: 0 10px;">
-            <a href="tel:+911234567890" class="mobile-btn btn-call"
-                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 0.85rem;"><i
-                    class="fas fa-phone-alt"></i> Call Now</a>
-            <a href="https://wa.me/919876543210?text=Hello" class="mobile-btn btn-whatsapp-mob"
-                style="width: 135px; height: 55px; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 0.85rem;"><i
+        <div class="mobile-actions">
+            <a href="tel:+911234567890" class="mobile-btn btn-call"><i class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="https://wa.me/919876543210?text=Hello" class="mobile-btn btn-whatsapp-mob"><i
                     class="fab fa-whatsapp"></i>WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Form Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirm-card">
+            <div class="confirm-header">
+                <i class="fas fa-clipboard-check" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                <h3>Verify Your Details</h3>
+                <p>Please review your information before final submission.</p>
+            </div>
+            <div class="confirm-body" id="confirmData" style="margin: 20px 0; text-align: left;">
+                <!-- Data will be injected by JS -->
+            </div>
+            <div class="confirm-footer" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                <button class="btn" id="editDetailsBtn" style="background: #eee; color: #333; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Edit Details</button>
+                <button class="btn gradient-btn" id="finalSubmitBtn" style="color: white; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm & Submit</button>
+            </div>
         </div>
     </div>
 
@@ -92,11 +106,11 @@
             <!-- Slides will be injected by JS or we can hardcode 4 slides -->
             <div class="slide active" style="background-image: url('images/Banner-1.jpg');">
             </div>
-            <div class="slide" style="background-image: url('images/Banner-2.jpg');">
+            <div class="slide" style="background-image: url('images/banner-2.jpg');">
             </div>
-            <div class="slide" style="background-image: url('images/Banner-3.jpg');">
+            <div class="slide" style="background-image: url('images/banner-3.jpg');">
             </div>
-            <div class="slide" style="background-image: url('images/Banner-4.jpg');">
+            <div class="slide" style="background-image: url('images/banner-4.jpg');">
             </div>
             <!-- Overlay to darken background slightly for readability -->
             <div class="hero-overlay"></div>
@@ -855,14 +869,14 @@
                 <p>© 2026 Roy Tour & Travels | Developed by <strong>Anees Irshad Bhat</strong></p>
             </div>
         </div>
-         <!-- Booking Popup Modal -->
+        < <!-- Booking Popup Modal -->
             <div class="booking-modal-overlay" id="bookingModal">
                 <div class="modal-container">
                     <button class="close-modal" id="closeModal" aria-label="Close"><i class="fas fa-times"></i></button>
 
                     <!-- Modal Header -->
                     <div class="modal-header-block">
-                        <div class="modal-icon-ring"><img src="images/logo circular footer.png" alt=""></div>
+                        <div class="modal-icon-ring"><i class="fas fa-mountain"></i></div>
                         <h2 class="modal-title">Plan Your Dream Trip</h2>
                         <p class="modal-subtitle">Our Kashmir experts will craft your itinerary and call back within 2
                             hours.</p>
@@ -947,4 +961,5 @@
             </div>
 
 </body>
+
 </html>

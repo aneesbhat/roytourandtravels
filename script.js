@@ -139,31 +139,99 @@ document.addEventListener('DOMContentLoaded', () => {
     const formSuccess = document.getElementById('formSuccess');
     const resetFormBtn = document.getElementById('resetFormBtn');
 
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+    let currentFormToSubmit = null; // Track which form is active
+
+    const handleFormSubmit = (e, form) => {
+        e.preventDefault();
+        
+        // Honeypot check
+        const hp = form.querySelector('input[name="honeypot"]');
+        if (hp && hp.value) return;
+
+        // Gather Data
+        const formData = new FormData(form);
+        let html = '';
+        
+        const fieldLabels = {
+            'fullName': 'Name',
+            'email': 'Email',
+            'phone': 'Phone',
+            'package': 'Interest',
+            'ticketsBooked': 'Tickets Fixed?',
+            'modalTickets': 'Tickets Fixed?',
+            'travelDate': 'Travel Date',
+            'message': 'Message'
+        };
+
+        for (let [key, value] of formData.entries()) {
+            if (key === 'honeypot') continue;
+            if (key === 'ticketsBooked' || key === 'modalTickets') value = value === 'yes' ? 'Yes' : 'No';
+            if (!value) value = 'N/A';
             
-            // Honeypot check
-            const honeypot = document.getElementById('honeypot').value;
-            if (honeypot) {
-                console.log('Spam detected');
-                return; // Silently reject
+            html += `
+                <div class="confirm-item">
+                    <span class="confirm-label">${fieldLabels[key] || key}</span>
+                    <span class="confirm-value">${value}</span>
+                </div>
+            `;
+        }
+
+        currentFormToSubmit = form;
+        confirmData.innerHTML = html;
+        confirmationModal.classList.add('active');
+    };
+
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', (e) => handleFormSubmit(e, bookingForm));
+    }
+
+    if (editDetailsBtn) {
+        editDetailsBtn.addEventListener('click', () => {
+            confirmationModal.classList.remove('active');
+            currentFormToSubmit = null;
+        });
+    }
+
+    if (finalSubmitBtn) {
+        finalSubmitBtn.addEventListener('click', () => {
+            if (!currentFormToSubmit) return;
+            
+            const form = currentFormToSubmit;
+            confirmationModal.classList.remove('active');
+            
+            // Handle success based on which form it is
+            if (form === bookingForm) {
+                const submitBtn = form.querySelector('.btn-submit');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    formSuccess.style.display = 'flex';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                }, 1500);
+            } else if (form === modalBookingForm) {
+                const submitBtn = document.getElementById('modalSubmitBtn');
+                const btnText   = submitBtn ? submitBtn.querySelector('.btn-text')   : null;
+                const btnLoader = submitBtn ? submitBtn.querySelector('.btn-loader')  : null;
+
+                if (submitBtn)  submitBtn.disabled = true;
+                if (btnText)    btnText.style.display   = 'none';
+                if (btnLoader)  btnLoader.style.display = 'inline-flex';
+
+                setTimeout(() => {
+                    modalBookingForm.style.display = 'none';
+                    if (modalSuccess) modalSuccess.style.display = 'block';
+                    if (submitBtn)  submitBtn.disabled = false;
+                    if (btnText)    btnText.style.display   = '';
+                    if (btnLoader)  btnLoader.style.display = 'none';
+                }, 1500);
             }
-
-            // Simulate AJAX request
-            const submitBtn = bookingForm.querySelector('.btn-submit');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                // Success
-                bookingForm.style.display = 'none';
-                formSuccess.style.display = 'flex';
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                bookingForm.reset();
-            }, 1500);
+            
+            currentFormToSubmit = null;
         });
     }
 
@@ -314,31 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Modal form submission
         if (modalBookingForm) {
-            modalBookingForm.addEventListener('submit', e => {
-                e.preventDefault();
-
-                // Honeypot check
-                const hp = document.getElementById('modalHoneypot');
-                if (hp && hp.value) return;
-
-                // Button loading state
-                const submitBtn = document.getElementById('modalSubmitBtn');
-                const btnText   = submitBtn ? submitBtn.querySelector('.btn-text')   : null;
-                const btnLoader = submitBtn ? submitBtn.querySelector('.btn-loader')  : null;
-
-                if (submitBtn)  submitBtn.disabled = true;
-                if (btnText)    btnText.style.display   = 'none';
-                if (btnLoader)  btnLoader.style.display = 'inline-flex';
-
-                setTimeout(() => {
-                    modalBookingForm.style.display = 'none';
-                    if (modalSuccess) modalSuccess.style.display = 'block';
-                    // Reset button
-                    if (submitBtn)  submitBtn.disabled = false;
-                    if (btnText)    btnText.style.display   = '';
-                    if (btnLoader)  btnLoader.style.display = 'none';
-                }, 1500);
-            });
+            modalBookingForm.addEventListener('submit', e => handleFormSubmit(e, modalBookingForm));
         }
     }
 });
