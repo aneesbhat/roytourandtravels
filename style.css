@@ -1483,13 +1483,18 @@ h2 {
 
     .hero-section {
         height: auto;
-        min-height: 450px;
+        min-height: 580px;
         padding-top: 100px;
+        padding-bottom: 70px;
     }
 
     .hero-carousel, .hero-carousel .slide {
         height: 100%;
-        min-height: 450px;
+        min-height: 580px;
+    }
+
+    .carousel-indicators {
+        bottom: 10px !important;
     }
 }
 
