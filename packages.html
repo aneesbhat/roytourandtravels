@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Packages - Roy Tour & Travels | Premium Travel Experiences</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Explore our premium Kashmir, Katra, and Ladakh tour packages. Customized itineraries for every traveler.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <!-- JS -->
+    <script src="script.js" defer></script>
+    <style>
+        .packages-hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .packages-hero .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-ani-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-ani-content h1 {
+            font-size: 4rem;
+            font-family: 'DM Serif Display', serif;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-ani-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .filter-section {
+            padding: 40px 0;
+            background: #fdfdfd;
+        }
+
+        .packages-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            padding: 12px 35px;
+            border-radius: 50px;
+            background: white;
+            color: var(--text-dark);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(209, 0, 86, 0.3);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .pkg-card-premium {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .pkg-card-premium:hover {
+            transform: translateY(-15px) rotateX(2deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .pkg-image-box {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .pkg-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .pkg-card-premium:hover .pkg-image-box img {
+            transform: scale(1.15);
+        }
+
+        .pkg-category-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .pkg-price-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-top-left-radius: 25px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+        .pkg-body-premium {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .premium-pkg-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-family: 'DM Serif Display', serif;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .premium-pkg-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .premium-pkg-meta i {
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+
+        .premium-pkg-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .pkg-feat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: #444;
+        }
+
+        .pkg-feat-item i {
+            color: #00b894;
+            font-size: 0.9rem;
+        }
+
+        .pkg-actions-premium {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .btn-premium-cta {
+            padding: 14px 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-book-premium {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 8px 20px rgba(209, 0, 86, 0.2);
+        }
+
+        .btn-book-premium:hover {
+            box-shadow: 0 12px 30px rgba(209, 0, 86, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-call-premium {
+            background: #f0f2f5;
+            color: #1a1a1a;
+            border: 1px solid #e0e4e9;
+        }
+
+        .btn-call-premium:hover {
+            background: #e4e7eb;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-ani-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/919876543210?text=Hello" class="fab-btn btn-whatsapp" aria-label="WhatsApp"><i
+                class="fab fa-whatsapp"></i></a>
+        <a href="tel:+911234567890" class="fab-btn btn-phone" aria-label="Call Now"><i class="fas fa-phone-alt"></i></a>
+        <button class="fab-btn btn-ai" aria-label="AI Chat Bot"><i class="fas fa-robot"></i></button>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <div class="brand">
+                <a href="index.html" class="logo-wrapper">
+                    <img src="images/logo circular footer.png" alt="">
+                    <div class="brand-text">
+                        <span class="company-name">Roy Tour & Travels</span>
+                        <span class="company-quote">Aesthetics of Kashmir</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Off-Canvas Menu -->
+    <div class="off-canvas-menu" id="offCanvas">
+        <div class="off-canvas-header">
+            <span class="company-name">Roy Tour & Travels</span>
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-actions">
+            <a href="tel:+911234567890" class="mobile-btn btn-call"><i class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="https://wa.me/919876543210?text=Hello" class="mobile-btn btn-whatsapp-mob"><i
+                    class="fab fa-whatsapp"></i>WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Banner Video -->
+    <section class="packages-hero">
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline>
+                <source src="images/banner-video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-ani-content">
+            <h1>Our Premium Packages</h1>
+            <p>Choose from our meticulously crafted itineraries across Kashmir, Katra, and Ladakh. Every journey is
+                designed for those who seek the extraordinary.</p>
+        </div>
+    </section>
+
+    <!-- Filter & Packages Section -->
+    <section class="filter-section section-padding">
+        <div class="container">
+            <div class="packages-filter">
+                <div class="filter-btn active" data-filter="all">All Packages</div>
+                <div class="filter-btn" data-filter="kashmir">Kashmir</div>
+                <div class="filter-btn" data-filter="katra">Katra</div>
+                <div class="filter-btn" data-filter="ladakh">Ladakh</div>
+            </div>
+
+            <div class="packages-grid" id="packagesGrid">
+                <!-- Kashmir Packages -->
+                <div class="pkg-card-premium tilt-card" data-category="kashmir">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Kashmir</div>
+                        <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?q=80&w=1000&auto=format&fit=crop"
+                            alt="Kashmir Paradise">
+                        <div class="pkg-price-badge">₹15,999/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Kashmir Paradise Tour</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 5D/4N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Luxury Houseboat</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Shikara Ride</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Private Cabs</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Breakfast & Dinner</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Kashmir Paradise Tour"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="kashmir">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Kashmir</div>
+                        <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1000&auto=format&fit=crop"
+                            alt="Honeymoon Special">
+                        <div class="pkg-price-badge">₹22,500/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Romantic Kashmir Honeymoon</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 6D/5N</span>
+                            <span><i class="far fa-user"></i> Couple</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Candlelight Dinner</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Bed Decoration</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Premium Stays</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Personal Guide</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Romantic Kashmir Honeymoon"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="kashmir">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Kashmir</div>
+                        <img src="https://images.unsplash.com/photo-1583143824824-2c35803975b3?q=80&w=1000&auto=format&fit=crop"
+                            alt="Winter Wonderland">
+                        <div class="pkg-price-badge">₹18,200/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Kashmir Winter Special</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 6D/5N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Gulmarg Gondola</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Snow Activities</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Heated Rooms</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Jeep Transfers</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Kashmir Winter Special"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="kashmir">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Kashmir</div>
+                        <img src="https://images.unsplash.com/photo-1617653202545-9347a0604164?q=80&w=1000&auto=format&fit=crop"
+                            alt="Offbeat Kashmir">
+                        <div class="pkg-price-badge">₹24,999/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Kashmir Offbeat Odyssey</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 8D/7N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Doodhpathri Stay</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Gurez Valley</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Village Treks</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Local Cuisine</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Kashmir Offbeat Odyssey"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Katra Packages -->
+                <div class="pkg-card-premium tilt-card" data-category="katra">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Katra</div>
+                        <img src="https://images.unsplash.com/photo-1626014303757-636611689ea7?q=80&w=1000&auto=format&fit=crop"
+                            alt="Vaishno Devi">
+                        <div class="pkg-price-badge">₹6,500/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Vaishno Devi Darshan</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 3D/2N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Priority Darshan</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Hotel Near Bhavan</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Pick & Drop</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Buffet Meals</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Vaishno Devi Darshan"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="katra">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Katra</div>
+                        <img src="https://images.unsplash.com/photo-154473574d-3126be6ec46e?q=80&w=1000&auto=format&fit=crop"
+                            alt="Katra & Khori">
+                        <div class="pkg-price-badge">₹8,900/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Katra & Shiv Khori Special</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 4D/3N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Khori Sightseeing</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Luxury Cab</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Deluxe Rooms</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Guide Support</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Katra & Shiv Khori Special"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="katra">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Katra</div>
+                        <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?q=80&w=1000&auto=format&fit=crop"
+                            alt="Spiritual Tour">
+                        <div class="pkg-price-badge">₹12,500/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Divine Kashmir & Katra</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 6D/5N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Katra + Srinagar</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> All Transfers</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Sightseeing Included</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Family Friendly</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Divine Kashmir & Katra"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="katra">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Katra</div>
+                        <img src="https://plus.unsplash.com/premium_photo-1697729440632-6a4a159957d1?q=80&w=1000&auto=format&fit=crop"
+                            alt="Katra Best">
+                        <div class="pkg-price-badge">₹10,200/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Katra Premium Retreat</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 4D/3N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> 5-Star Hotel</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> VIP Darshan Slip</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Helipad Transfer</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Spa & Wellness</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Katra Premium Retreat"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ladakh Packages -->
+                <div class="pkg-card-premium tilt-card" data-category="ladakh">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Ladakh</div>
+                        <img src="https://images.unsplash.com/photo-1581791534721-e599df440791?q=80&w=1000&auto=format&fit=crop"
+                            alt="Leh Ladakh">
+                        <div class="pkg-price-badge">₹28,500/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Leh Ladakh Essence</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 6D/5N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Pangong Lake</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Nubra Valley</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Khardung La</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Oxygen Support</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Leh Ladakh Essence"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="ladakh">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Ladakh</div>
+                        <img src="https://images.unsplash.com/photo-1544985367-334311181775?q=80&w=1000&auto=format&fit=crop"
+                            alt="Pangong Special">
+                        <div class="pkg-price-badge">₹32,000/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Pangong Lake Luxury</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 7D/6N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Premium Camps</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Stargazing</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Inner Line Permit</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Professional Guide</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Pangong Lake Luxury"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="ladakh">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Ladakh</div>
+                        <img src="https://images.unsplash.com/photo-1518349619113-03114f06ac3a?q=80&w=1000&auto=format&fit=crop"
+                            alt="Ladakh Bike">
+                        <div class="pkg-price-badge">₹35,500/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Ladakh Adventure Bike Trip</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 9D/8N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Royal Enfield Bike</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Backup Vehicle</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Mechanic Support</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Adventure Fuel</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Ladakh Adventure Bike Trip"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pkg-card-premium tilt-card" data-category="ladakh">
+                    <div class="pkg-image-box">
+                        <div class="pkg-category-badge">Ladakh</div>
+                        <img src="https://images.unsplash.com/photo-1621535974797-23b9dcc88383?q=80&w=1000&auto=format&fit=crop"
+                            alt="Ladakh Explorer">
+                        <div class="pkg-price-badge">₹42,000/-</div>
+                    </div>
+                    <div class="pkg-body-premium">
+                        <h3 class="premium-pkg-title">Complete Ladakh Odyssey</h3>
+                        <div class="premium-pkg-meta">
+                            <span><i class="far fa-clock"></i> 11D/10N</span>
+                            <span><i class="far fa-user"></i> Per Person</span>
+                        </div>
+                        <div class="premium-pkg-features">
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Magnetic Hill</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Tsomoriri Lake</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> Monastery Tour</div>
+                            <div class="pkg-feat-item"><i class="fas fa-check-circle"></i> All Inclusive</div>
+                        </div>
+                        <div class="pkg-actions-premium">
+                            <a href="tel:+911234567890" class="btn-premium-cta btn-call-premium"><i
+                                    class="fas fa-phone-alt"></i> Call Now</a>
+                            <button class="btn-premium-cta btn-book-premium trigger-booking"
+                                data-package="Complete Ladakh Odyssey"><i class="fas fa-calendar-check"></i> Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal (Same as home) -->
+    <div id="bookingModal" class="booking-modal-overlay">
+        <div class="modal-container">
+            <button class="close-modal" id="closeModal">×</button>
+            <div class="modal-header-block">
+                <div class="modal-icon-ring"><i class="fas fa-suitcase-rolling"></i></div>
+                <h2 class="modal-title">Book Package</h2>
+                <div class="selected-package-badge" id="selectedPackageDisplay">
+                    <i class="fas fa-bookmark"></i> <span id="packageNameText">Package Name</span>
+                </div>
+                <p class="modal-subtitle">Experience Kashmir's aesthetics with Roy Tour & Travels.</p>
+            </div>
+            <form id="modalBookingForm" class="modal-booking-form">
+                <div class="modal-form-grid">
+                    <div class="modal-field modal-field-full">
+                        <label for="modalFullName"><i class="fas fa-user-circle"></i> Full Name <span
+                                class="req">*</span></label>
+                        <input type="text" id="modalFullName" name="fullName" placeholder="Enter your full name"
+                            required>
+                    </div>
+                    <div class="modal-field modal-field-half">
+                        <label for="modalEmail"><i class="fas fa-envelope-open"></i> Email <span
+                                class="req">*</span></label>
+                        <input type="email" id="modalEmail" name="email" placeholder="example@mail.com" required>
+                    </div>
+                    <div class="modal-field modal-field-half">
+                        <label for="modalPhone"><i class="fas fa-phone-volume"></i> Phone <span
+                                class="req">*</span></label>
+                        <input type="tel" id="modalPhone" name="phone" placeholder="+91 00000 00000" required>
+                    </div>
+                    <div class="modal-field modal-field-full">
+                        <label><i class="fas fa-ticket-alt"></i> Are your tickets fixed? <span
+                                class="req">*</span></label>
+                        <div class="modal-radio-group">
+                            <label class="modal-radio-label">
+                                <input type="radio" name="modalTickets" value="yes">
+                                <span class="modal-radio-custom"></span> Yes
+                            </label>
+                            <label class="modal-radio-label">
+                                <input type="radio" name="modalTickets" value="no" checked>
+                                <span class="modal-radio-custom"></span> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-field modal-field-full">
+                        <label for="modalTravelDate"><i class="fas fa-calendar-day"></i> Travel Date <span
+                                id="modalDateAsterisk" style="display:none;" class="req">*</span></label>
+                        <input type="date" id="modalTravelDate" name="travelDate" disabled>
+                        <span class="modal-hint" id="modalDateHint">Optional if tickets aren't fixed yet.</span>
+                    </div>
+                    <div class="modal-field modal-field-full">
+                        <label for="modalMessage"><i class="fas fa-comment-dots"></i> Special Requirements</label>
+                        <textarea id="modalMessage" name="message" rows="2"
+                            placeholder="Tell us anything else..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="modal-submit-btn" id="modalSubmitBtn">
+                    <span class="btn-text">Send Booking Inquiry</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div id="modalSuccess" class="modal-success" style="display:none;">
+                <div class="modal-success-icon"><i class="fas fa-check"></i></div>
+                <h3>Request Sent Successfully!</h3>
+                <p>We have received your inquiry. Our travel specialist will call you within 30 minutes to finalize your
+                    dream package.</p>
+                <button class="modal-submit-btn" id="closeSuccessBtn" style="margin-top:20px;">Got it, thanks!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirm-card">
+            <div class="confirm-header">
+                <i class="fas fa-clipboard-check"
+                    style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                <h3>Verify Your Details</h3>
+                <p>Please review your information before final submission.</p>
+            </div>
+            <div class="confirm-body" id="confirmData" style="margin: 20px 0; text-align: left;">
+                <!-- Data will be injected by JS -->
+            </div>
+            <div class="confirm-footer" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                <button class="btn" id="editDetailsBtn"
+                    style="background: #eee; color: #333; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Edit
+                    Details</button>
+                <button class="btn gradient-btn" id="finalSubmitBtn"
+                    style="color: white; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm
+                    & Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo circular footer.png" alt="Roy Tour & Travels Logo"
+                            class="footer-logo-img">
+                        <div class="brand-text">
+                            <span class="company-name">Roy Tour & Travels</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc mt-3">Premium travel experiences in Kashmir. We specialize in customized
+                        tours, honeymoon packages, and family vacations.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Top Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">All Packages</a></li>
+                        <li><a href="#">Srinagar</a></li>
+                        <li><a href="#">Gulmarg</a></li>
+                        <li><a href="#">Pahalgam</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919876543210?text=Hello">WhatsApp
+                                Us</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:info@roytourstravels.com">info@roytourstravels.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Dal Lake Boulevard, Srinagar, J&K 190001</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <ul class="useful-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="developer-credit text-center mt-4">
+                <p>© 2026 Roy Tour & Travels | Developed by <strong>Anees Irshad Bhat</strong></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

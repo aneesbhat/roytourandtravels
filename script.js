@@ -385,4 +385,32 @@ document.addEventListener('DOMContentLoaded', () => {
             modalBookingForm.addEventListener('submit', e => handleFormSubmit(e, modalBookingForm));
         }
     }
+
+    /* --- 9. Packages Page Filter --- */
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const packageCards = document.querySelectorAll('.pkg-card-premium');
+
+    if (filterButtons.length > 0 && packageCards.length > 0) {
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-filter');
+                
+                // Active button state
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Show/Hide cards
+                packageCards.forEach(card => {
+                    const cardCat = card.getAttribute('data-category');
+                    if (category === 'all' || cardCat === category) {
+                        card.style.display = 'flex';
+                        // Add a small animation to reappearing cards
+                        gsap.fromTo(card, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4 });
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 });
