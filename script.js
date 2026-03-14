@@ -418,14 +418,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 let matchesCategory = (activeCategory === 'all' || cardCat === activeCategory);
                 let matchesPrice = true;
 
-                if (activePriceRange === 'under10k') {
-                    matchesPrice = price < 10000;
-                } else if (activePriceRange === '10k-20k') {
-                    matchesPrice = price >= 10000 && price <= 20000;
+                if (activePriceRange === 'under20k') {
+                    matchesPrice = price < 20000;
                 } else if (activePriceRange === '20k-30k') {
-                    matchesPrice = price > 20000 && price <= 30000;
-                } else if (activePriceRange === 'above30k') {
-                    matchesPrice = price > 30000;
+                    matchesPrice = price >= 20000 && price <= 30000;
+                } else if (activePriceRange === '30k-45k') {
+                    matchesPrice = price > 30000 && price <= 45000;
+                } else if (activePriceRange === 'above45k') {
+                    matchesPrice = price > 45000;
                 }
 
                 if (matchesCategory && matchesPrice) {
