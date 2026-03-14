@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showSlide = (index) => {
         slides.forEach(slide => slide.classList.remove('active'));
         indicators.forEach(ind => ind.classList.remove('active'));
-        
+
         slides[index].classList.add('active');
         indicators[index].classList.add('active');
         currentSlide = index;
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             const list = e.target.closest('.pkg-inclusions').querySelector('.inclusions-list');
             const icon = e.target.querySelector('i');
-            
+
             if (list.style.display === 'block') {
                 list.style.display = 'none';
                 icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = +counter.getAttribute('data-target');
             const duration = 2000; // ms
             const step = target / (duration / 16); // 60fps
-            
+
             let current = 0;
             const updateCounter = () => {
                 current += step;
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleFormSubmit = (e, form) => {
         e.preventDefault();
-        
+
         // Honeypot check
         const hp = form.querySelector('input[name="honeypot"]');
         if (hp && hp.value) return;
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gather Data
         const formData = new FormData(form);
         let html = '';
-        
+
         const fieldLabels = {
             'fullName': 'Name',
             'email': 'Email',
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (key === 'honeypot') continue;
             if (key === 'ticketsBooked' || key === 'modalTickets') value = value === 'yes' ? 'Yes' : 'No';
             if (!value) value = 'N/A';
-            
+
             html += `
                 <div class="confirm-item">
                     <span class="confirm-label">${fieldLabels[key] || key}</span>
@@ -201,49 +201,80 @@ document.addEventListener('DOMContentLoaded', () => {
     if (finalSubBtn) {
         finalSubBtn.addEventListener('click', () => {
             if (!currentFormToSubmit) return;
-            
+
             const form = currentFormToSubmit;
             if (confModal) confModal.classList.remove('active');
-            
-            // Handle success based on which form it is
-            if (form === bookingForm) {
-                const submitBtn = form.querySelector('.btn-submit');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            // Handle Real Submission via AJAX
+            const submitBtn = form.querySelector('.btn-submit') || form.querySelector('.modal-submit-btn') || document.getElementById('modalSubmitBtn');
+            const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+
+            // Show Loading State
+            if (submitBtn) {
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoader = submitBtn.querySelector('.btn-loader');
+                
+                if (btnText && btnLoader) {
+                    btnText.style.display = 'none';
+                    btnLoader.style.display = 'inline-flex';
+                } else {
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                }
                 submitBtn.disabled = true;
-
-                setTimeout(() => {
-                    const formHeight = form.offsetHeight;
-                    form.style.display = 'none';
-                    if (formSuccess) {
-                        formSuccess.style.height = `${formHeight}px`;
-                        formSuccess.style.display = 'flex';
-                    }
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    form.reset();
-                }, 1500);
-            } else {
-                // Must be modalBookingForm
-                const modalBookForm = document.getElementById('modalBookingForm');
-                const modalSucc = document.getElementById('modalSuccess');
-                const submitBtn = document.getElementById('modalSubmitBtn');
-                const btnText   = submitBtn ? submitBtn.querySelector('.btn-text')   : null;
-                const btnLoader = submitBtn ? submitBtn.querySelector('.btn-loader')  : null;
-
-                if (submitBtn)  submitBtn.disabled = true;
-                if (btnText)    btnText.style.display   = 'none';
-                if (btnLoader)  btnLoader.style.display = 'inline-flex';
-
-                setTimeout(() => {
-                    if (modalBookForm) modalBookForm.style.display = 'none';
-                    if (modalSucc) modalSucc.style.display = 'block';
-                    if (submitBtn)  submitBtn.disabled = false;
-                    if (btnText)    btnText.style.display   = '';
-                    if (btnLoader)  btnLoader.style.display = 'none';
-                }, 1500);
             }
-            
+
+            // Prepare Data
+            const formData = new FormData(form);
+            const object = {};
+            formData.forEach((value, key) => object[key] = value);
+            // Add a subject line
+            object['_subject'] = `New Inquiry from ${object['fullName'] || 'Website'}`;
+
+            // Use the form's action URL if available, otherwise fallback
+            const actionUrl = form.action || 'https://formsubmit.co/ajax/3353a37ee7ad5c82809a46c6207ba2ac';
+
+            fetch(actionUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(object)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Handle success UI
+                    if (form.id === 'bookingForm') {
+                        const formHeight = form.offsetHeight;
+                        form.style.display = 'none';
+                        if (formSuccess) {
+                            formSuccess.style.height = `${formHeight}px`;
+                            formSuccess.style.display = 'flex';
+                        }
+                    } else {
+                        const modalSucc = document.getElementById('modalSuccess');
+                        form.style.display = 'none';
+                        if (modalSucc) modalSucc.style.display = 'block';
+                    }
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Oops! Something went wrong. Please try again or contact us directly.');
+                })
+                .finally(() => {
+                    // Restore Button State
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnContent;
+                        const btnText = submitBtn.querySelector('.btn-text');
+                        const btnLoader = submitBtn.querySelector('.btn-loader');
+                        if (btnText) btnText.style.display = '';
+                        if (btnLoader) btnLoader.style.display = 'none';
+                    }
+                });
+
             currentFormToSubmit = null;
         });
     }
@@ -267,17 +298,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
+
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                
+
                 const rotateX = ((y - centerY) / centerY) * -10; // max 10 deg
                 const rotateY = ((x - centerX) / centerX) * 10;
-                
+
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                 card.style.transition = 'none';
             });
-            
+
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
                 card.style.transition = 'transform 0.5s ease';
@@ -342,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto';
         setTimeout(() => {
             if (modalBookingForm) { modalBookingForm.style.display = ''; modalBookingForm.reset(); }
-            if (modalSuccess)    { modalSuccess.style.display = 'none'; }
+            if (modalSuccess) { modalSuccess.style.display = 'none'; }
         }, 400);
     };
 
@@ -354,8 +385,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (pkgName && packageNameText && selectedPackageDisplay) {
                     packageNameText.innerText = pkgName;
                     selectedPackageDisplay.style.display = 'inline-flex';
+                    const pkgInput = document.getElementById('modalPackageInput');
+                    if (pkgInput) pkgInput.value = pkgName;
                 } else if (selectedPackageDisplay) {
                     selectedPackageDisplay.style.display = 'none';
+                    const pkgInput = document.getElementById('modalPackageInput');
+                    if (pkgInput) pkgInput.value = '';
                 }
                 bookingModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -363,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Close handlers
-        if (closeModal)      closeModal.addEventListener('click', closeModalFunc);
+        if (closeModal) closeModal.addEventListener('click', closeModalFunc);
         if (closeSuccessBtn) closeSuccessBtn.addEventListener('click', closeModalFunc);
         bookingModal.addEventListener('click', e => { if (e.target === bookingModal) closeModalFunc(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalFunc(); });
@@ -371,8 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ticket radio → travel date toggle
         const modalTicketRadios = document.querySelectorAll('input[name="modalTickets"]');
         const modalTravelDateInput = document.getElementById('modalTravelDate');
-        const modalDateAsterisk   = document.getElementById('modalDateAsterisk');
-        const modalDateHint       = document.getElementById('modalDateHint');
+        const modalDateAsterisk = document.getElementById('modalDateAsterisk');
+        const modalDateHint = document.getElementById('modalDateHint');
 
         if (modalTravelDateInput) {
             modalTicketRadios.forEach(radio => {
@@ -381,13 +416,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalTravelDateInput.disabled = false;
                         modalTravelDateInput.required = true;
                         if (modalDateAsterisk) modalDateAsterisk.style.display = 'inline';
-                        if (modalDateHint)     modalDateHint.style.display = 'none';
+                        if (modalDateHint) modalDateHint.style.display = 'none';
                     } else {
                         modalTravelDateInput.disabled = true;
                         modalTravelDateInput.required = false;
                         modalTravelDateInput.value = '';
                         if (modalDateAsterisk) modalDateAsterisk.style.display = 'none';
-                        if (modalDateHint)     modalDateHint.style.display = 'block';
+                        if (modalDateHint) modalDateHint.style.display = 'block';
                     }
                 });
             });
@@ -414,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cardCat = card.getAttribute('data-category');
                 const priceText = card.querySelector('.pkg-price-badge').innerText;
                 const price = parseInt(priceText.replace(/[^0-9]/g, ''), 10);
-                
+
                 let matchesCategory = (activeCategory === 'all' || cardCat === activeCategory);
                 let matchesPrice = true;
 
