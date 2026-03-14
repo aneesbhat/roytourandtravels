@@ -94,7 +94,7 @@
             </div>
             <div class="confirm-footer" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
                 <button class="btn" id="editDetailsBtn" style="background: #eee; color: #333; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Edit Details</button>
-                <button class="btn gradient-btn" id="finalSubmitBtn" style="color: white; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm & Submit</button>
+                <button class="btn gradient-btn" id="finalSubmitBtn" style="color: black; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm & Submit</button>
             </div>
         </div>
     </div>
@@ -780,11 +780,10 @@
                     </form>
 
                     <!-- Success Message Container -->
-                    <div id="formSuccess" class="form-success text-center">
-                        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                        <h3>Request Received!</h3>
-                        <p>Thank you for reaching out to Roy Tour & Travels. Our executive will contact you shortly to
-                            plan your dream vacation.</p>
+                    <div id="formSuccess" class="form-success modal-success" style="display:none; text-align:center;">
+                        <div class="modal-success-icon"><i class="fas fa-check"></i></div>
+                        <h3>We Got Your Request!</h3>
+                        <p>Our expert will call you shortly to plan your perfect Kashmir getaway.</p>
                         <button class="btn btn-secondary mt-3" id="resetFormBtn">Send Another Inquiry</button>
                     </div>
                 </div>
@@ -876,7 +875,7 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header-block">
-                        <div class="modal-icon-ring"><i class="fas fa-mountain"></i></div>
+                        <div class="modal-icon-ring"><img src="images/logo circular footer.png" alt=""></div>
                         <h2 class="modal-title">Plan Your Dream Trip</h2>
                         <p class="modal-subtitle">Our Kashmir experts will craft your itinerary and call back within 2
                             hours.</p>

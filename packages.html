@@ -97,7 +97,7 @@
         }
 
         .filter-btn {
-            padding: 12px 35px;
+            padding: 12px 25px;
             border-radius: 50px;
             background: white;
             color: var(--text-dark);
@@ -108,6 +108,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             font-size: 0.95rem;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .filter-btn.active,
@@ -117,6 +118,67 @@
             border-color: transparent;
             box-shadow: 0 10px 25px rgba(209, 0, 86, 0.3);
             transform: translateY(-5px) scale(1.05);
+        }
+
+        .price-filter-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .price-filter-icon {
+            position: absolute;
+            left: 18px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .price-filter-select {
+            padding: 12px 20px 12px 42px; /* Extra left padding for the icon */
+            border-radius: 50px;
+            background: white;
+            color: var(--text-dark);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232d2d2d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 10px auto;
+            padding-right: 40px; /* Space for the arrow */
+        }
+
+        .price-filter-select:hover,
+        .price-filter-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(209, 0, 86, 0.2);
+            transform: translateY(-2px);
+            outline: none;
+        }
+        
+        .price-filter-wrapper:hover .price-filter-select,
+        .price-filter-wrapper:focus-within .price-filter-select {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(209, 0, 86, 0.2);
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .price-filter-wrapper:hover .price-filter-icon,
+        .price-filter-wrapper:focus-within .price-filter-icon {
+            transform: translateY(-2px);
+            color: var(--primary-color);
+            opacity: 1;
         }
 
         .packages-grid {
@@ -350,6 +412,24 @@
         </div>
     </div>
 
+    <!-- Form Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirm-card">
+            <div class="confirm-header">
+                <i class="fas fa-clipboard-check" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                <h3>Verify Your Details</h3>
+                <p>Please review your information before final submission.</p>
+            </div>
+            <div class="confirm-body" id="confirmData" style="margin: 20px 0; text-align: left;">
+                <!-- Data will be injected by JS -->
+            </div>
+            <div class="confirm-footer" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                <button class="btn" id="editDetailsBtn" style="background: #eee; color: #333; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Edit Details</button>
+                <button class="btn gradient-btn" id="finalSubmitBtn" style="color: black; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm & Submit</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Banner Video -->
     <section class="packages-hero">
         <div class="hero-video-container">
@@ -373,6 +453,16 @@
                 <div class="filter-btn" data-filter="kashmir">Kashmir</div>
                 <div class="filter-btn" data-filter="katra">Katra</div>
                 <div class="filter-btn" data-filter="ladakh">Ladakh</div>
+                <div class="price-filter-wrapper">
+                    <i class="fas fa-filter price-filter-icon"></i>
+                    <select class="price-filter-select" id="priceFilter">
+                        <option value="all">Any Price</option>
+                        <option value="under10k">Under ₹10,000</option>
+                        <option value="10k-20k">₹10,000 - ₹20,000</option>
+                        <option value="20k-30k">₹20,000 - ₹30,000</option>
+                        <option value="above30k">Above ₹30,000</option>
+                    </select>
+                </div>
             </div>
 
             <div class="packages-grid" id="packagesGrid">
@@ -735,7 +825,7 @@
         <div class="modal-container">
             <button class="close-modal" id="closeModal">×</button>
             <div class="modal-header-block">
-                <div class="modal-icon-ring"><i class="fas fa-suitcase-rolling"></i></div>
+                <div class="modal-icon-ring"><img src="images/logo circular footer.png" alt=""></div>
                 <h2 class="modal-title">Book Package</h2>
                 <div class="selected-package-badge" id="selectedPackageDisplay">
                     <i class="fas fa-bookmark"></i> <span id="packageNameText">Package Name</span>
@@ -787,7 +877,7 @@
                     </div>
                 </div>
                 <button type="submit" class="modal-submit-btn" id="modalSubmitBtn">
-                    <span class="btn-text">Send Booking Inquiry</span>
+                    <span style="color: white !important;;" class="btn-text">Send Booking Inquiry</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </form>
@@ -818,7 +908,7 @@
                     style="background: #eee; color: #333; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Edit
                     Details</button>
                 <button class="btn gradient-btn" id="finalSubmitBtn"
-                    style="color: white; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm
+                    style="color: black; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm
                     & Submit</button>
             </div>
         </div>

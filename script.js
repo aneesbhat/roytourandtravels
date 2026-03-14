@@ -177,27 +177,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         currentFormToSubmit = form;
-        confirmData.innerHTML = html;
-        confirmationModal.classList.add('active');
+        const confData = document.getElementById('confirmData');
+        const confModal = document.getElementById('confirmationModal');
+        if (confData) confData.innerHTML = html;
+        if (confModal) confModal.classList.add('active');
     };
 
     if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => handleFormSubmit(e, bookingForm));
     }
 
-    if (editDetailsBtn) {
-        editDetailsBtn.addEventListener('click', () => {
-            confirmationModal.classList.remove('active');
+    const editDetBtn = document.getElementById('editDetailsBtn');
+    const finalSubBtn = document.getElementById('finalSubmitBtn');
+    const confModal = document.getElementById('confirmationModal');
+
+    if (editDetBtn) {
+        editDetBtn.addEventListener('click', () => {
+            if (confModal) confModal.classList.remove('active');
             currentFormToSubmit = null;
         });
     }
 
-    if (finalSubmitBtn) {
-        finalSubmitBtn.addEventListener('click', () => {
+    if (finalSubBtn) {
+        finalSubBtn.addEventListener('click', () => {
             if (!currentFormToSubmit) return;
             
             const form = currentFormToSubmit;
-            confirmationModal.classList.remove('active');
+            if (confModal) confModal.classList.remove('active');
             
             // Handle success based on which form it is
             if (form === bookingForm) {
@@ -207,13 +213,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = true;
 
                 setTimeout(() => {
+                    const formHeight = form.offsetHeight;
                     form.style.display = 'none';
-                    formSuccess.style.display = 'flex';
+                    if (formSuccess) {
+                        formSuccess.style.height = `${formHeight}px`;
+                        formSuccess.style.display = 'flex';
+                    }
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
                     form.reset();
                 }, 1500);
-            } else if (form === modalBookingForm) {
+            } else {
+                // Must be modalBookingForm
+                const modalBookForm = document.getElementById('modalBookingForm');
+                const modalSucc = document.getElementById('modalSuccess');
                 const submitBtn = document.getElementById('modalSubmitBtn');
                 const btnText   = submitBtn ? submitBtn.querySelector('.btn-text')   : null;
                 const btnLoader = submitBtn ? submitBtn.querySelector('.btn-loader')  : null;
@@ -223,8 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (btnLoader)  btnLoader.style.display = 'inline-flex';
 
                 setTimeout(() => {
-                    modalBookingForm.style.display = 'none';
-                    if (modalSuccess) modalSuccess.style.display = 'block';
+                    if (modalBookForm) modalBookForm.style.display = 'none';
+                    if (modalSucc) modalSucc.style.display = 'block';
                     if (submitBtn)  submitBtn.disabled = false;
                     if (btnText)    btnText.style.display   = '';
                     if (btnLoader)  btnLoader.style.display = 'none';
@@ -237,8 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (resetFormBtn) {
         resetFormBtn.addEventListener('click', () => {
-            formSuccess.style.display = 'none';
-            bookingForm.style.display = 'block';
+            if (formSuccess) formSuccess.style.display = 'none';
+            if (bookingForm) bookingForm.style.display = 'block';
         });
     }
 
@@ -388,29 +401,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* --- 9. Packages Page Filter --- */
     const filterButtons = document.querySelectorAll('.filter-btn');
+    const priceFilterDropdown = document.getElementById('priceFilter');
     const packageCards = document.querySelectorAll('.pkg-card-premium');
 
     if (filterButtons.length > 0 && packageCards.length > 0) {
+        let activeCategory = 'all';
+
+        const filterPackages = () => {
+            const activePriceRange = priceFilterDropdown ? priceFilterDropdown.value : 'all';
+
+            packageCards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                const priceText = card.querySelector('.pkg-price-badge').innerText;
+                const price = parseInt(priceText.replace(/[^0-9]/g, ''), 10);
+                
+                let matchesCategory = (activeCategory === 'all' || cardCat === activeCategory);
+                let matchesPrice = true;
+
+                if (activePriceRange === 'under10k') {
+                    matchesPrice = price < 10000;
+                } else if (activePriceRange === '10k-20k') {
+                    matchesPrice = price >= 10000 && price <= 20000;
+                } else if (activePriceRange === '20k-30k') {
+                    matchesPrice = price > 20000 && price <= 30000;
+                } else if (activePriceRange === 'above30k') {
+                    matchesPrice = price > 30000;
+                }
+
+                if (matchesCategory && matchesPrice) {
+                    card.style.display = 'flex';
+                    // Optional: re-trigger simple opacity animation on show
+                    gsap.fromTo(card, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4 });
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
+
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                const category = btn.getAttribute('data-filter');
-                
-                // Active button state
+                activeCategory = btn.getAttribute('data-filter');
                 filterButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
-                // Show/Hide cards
-                packageCards.forEach(card => {
-                    const cardCat = card.getAttribute('data-category');
-                    if (category === 'all' || cardCat === category) {
-                        card.style.display = 'flex';
-                        // Add a small animation to reappearing cards
-                        gsap.fromTo(card, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4 });
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                filterPackages();
             });
         });
+
+        if (priceFilterDropdown) {
+            priceFilterDropdown.addEventListener('change', filterPackages);
+        }
     }
 });

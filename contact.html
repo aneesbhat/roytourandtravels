@@ -143,6 +143,24 @@
         </div>
     </div>
 
+    <!-- Form Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirm-card">
+            <div class="confirm-header">
+                <i class="fas fa-clipboard-check" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                <h3>Verify Your Details</h3>
+                <p>Please review your information before final submission.</p>
+            </div>
+            <div class="confirm-body" id="confirmData" style="margin: 20px 0; text-align: left;">
+                <!-- Data will be injected by JS -->
+            </div>
+            <div class="confirm-footer" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                <button class="btn" id="editDetailsBtn" style="background: #eee; color: #333; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Edit Details</button>
+                <button class="btn gradient-btn" id="finalSubmitBtn" style="color: black; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer;">Confirm & Submit</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Video Banner -->
     <section class="video-hero">
         <img src="images/Contact Banner-Roy Tour & Travels.png" class="video-background" alt="">
@@ -297,12 +315,10 @@
                         </form>
 
                         <!-- Success Message Container -->
-                        <div id="formSuccess" class="form-success text-center">
-                            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                            <h3>Request Received!</h3>
-                            <p>Thank you for reaching out to Roy Tour & Travels. Our executive will contact you shortly
-                                to
-                                plan your dream vacation.</p>
+                        <div id="formSuccess" class="form-success modal-success" style="display:none; text-align:center;">
+                            <div class="modal-success-icon"><i class="fas fa-check"></i></div>
+                            <h3>We Got Your Request!</h3>
+                            <p>Our expert will call you shortly to plan your perfect Kashmir getaway.</p>
                             <button class="btn btn-secondary mt-3" id="resetFormBtn">Send Another Inquiry</button>
                         </div>
                     </div>
