@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (submitBtn) {
                 const btnText = submitBtn.querySelector('.btn-text');
                 const btnLoader = submitBtn.querySelector('.btn-loader');
-                
+
                 if (btnText && btnLoader) {
                     btnText.style.display = 'none';
                     btnLoader.style.display = 'inline-flex';
@@ -487,3 +487,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+
+

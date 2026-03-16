@@ -235,7 +235,7 @@ h2 {
 .floating-actions {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 30px;
     display: flex;
     flex-direction: column;
     gap: 15px;
