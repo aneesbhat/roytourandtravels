@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kashmir 8 Day Itinerary - Roy Tour & Travels</title>
+    <meta name="description" content="Explore our detailed 8-day Kashmir tour itinerary covering Srinagar, Gulmarg, Pahalgam, Sonamarg & more. Roy Tour & Travels premium Kashmir package.">
+    <meta name="author" content="Anees Irshad Bhat">
+    <link rel="icon" type="image/x-icon" href="images/logo circular footer.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo circular footer.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ====== ITINERARY PAGE STYLES ====== */
+        :root {
+            --primary-color: #d10056;
+            --secondary-color: #ff9a44;
+            --gradient-1: linear-gradient(135deg, #d10056 0%, #ff9a44 100%);
+            --footer-bg: #000370;
+        }
+
+        /* --- Hero Banner --- */
+        .itin-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0018 0%, #1a003a 40%, #3a0020 100%);
+        }
+        .itin-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('images/premium luxury.jpg') center/cover no-repeat;
+            opacity: 0.25;
+            z-index: 0;
+        }
+        .itin-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(209,0,86,0.18) 60%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
+        .itin-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 120px 20px 60px;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .itin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            backdrop-filter: blur(12px);
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+        }
+        .itin-badge i { color: #ff9a44; }
+        .itin-hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 18px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .itin-hero-title span {
+            background: linear-gradient(to right, #ff9a44, #fc6076);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .itin-hero-sub {
+            font-size: 1.08rem;
+            opacity: 0.88;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .itin-meta-chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .meta-chip {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .meta-chip i { color: #ff9a44; }
+
+        /* --- CTA Action Bar --- */
+        .cta-action-bar {
+            background: #fff;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            border-bottom: 2px solid rgba(209,0,86,0.08);
+        }
+        .cta-bar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .cta-bar-label {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1a1a1a;
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .cta-btn-call {
+            background: var(--gradient-1);
+            color: #fff;
+            box-shadow: 0 8px 22px rgba(209,0,86,0.25);
+        }
+        .cta-btn-wa {
+            background: #25D366;
+            color: #fff;
+            box-shadow: 0 8px 22px rgba(37,211,102,0.3);
+        }
+        .cta-btn-pdf {
+            background: #1a1a2e;
+            color: #fff;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+        }
+
+        /* --- Itinerary Section --- */
+        .itin-section {
+            padding: 80px 0 60px;
+            background: #fafafa;
+        }
+        .itin-section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .itin-section-title h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        .itin-section-title p {
+            color: #7b7b7b;
+            font-size: 1.05rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* --- Timeline --- */
+        .timeline {
+            position: relative;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #d10056, #ff9a44, #d10056);
+            border-radius: 3px;
+        }
+
+        .day-card {
+            display: flex;
+            gap: 28px;
+            margin-bottom: 36px;
+            perspective: 1200px;
+            animation: cardFlipIn 0.7s cubic-bezier(0.23,1,0.32,1) both;
+        }
+        .day-card:nth-child(1) { animation-delay: 0.05s; }
+        .day-card:nth-child(2) { animation-delay: 0.13s; }
+        .day-card:nth-child(3) { animation-delay: 0.21s; }
+        .day-card:nth-child(4) { animation-delay: 0.29s; }
+        .day-card:nth-child(5) { animation-delay: 0.37s; }
+        .day-card:nth-child(6) { animation-delay: 0.45s; }
+        .day-card:nth-child(7) { animation-delay: 0.53s; }
+        .day-card:nth-child(8) { animation-delay: 0.61s; }
+
+        @keyframes cardFlipIn {
+            0% { opacity: 0; transform: rotateX(-18deg) translateY(40px); }
+            100% { opacity: 1; transform: rotateX(0deg) translateY(0); }
+        }
+
+        .day-number-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 100px;
+            padding-top: 8px;
+        }
+        .day-pill {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Serif Display', serif;
+            box-shadow: 0 8px 24px rgba(209,0,86,0.3);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .day-pill .day-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1; }
+        .day-pill .day-num { font-size: 1.3rem; line-height: 1.1; font-weight: 800; }
+
+        .day-content-card {
+            flex: 1;
+            background: #fff;
+            border-radius: 20px;
+            padding: 28px 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07), 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            transform-style: preserve-3d;
+            transform: perspective(800px) rotateY(-2deg);
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .day-content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 0 0 0 0;
+        }
+        .day-card-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.28rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .day-card-title i {
+            font-size: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .day-card-desc {
+            color: #555;
+            font-size: 0.97rem;
+            line-height: 1.7;
+        }
+        .day-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .day-tag {
+            background: rgba(209,0,86,0.07);
+            color: #d10056;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        /* --- Tabs Section --- */
+        .tabs-section {
+            padding: 60px 0 80px;
+            background: #fff;
+        }
+        .tabs-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .tabs-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 36px;
+            background: #f4f4f4;
+            border-radius: 60px;
+            padding: 5px;
+            max-width: 360px;
+            margin: 0 auto 36px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 13px 28px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.97rem;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #777;
+        }
+        .tab-btn.active {
+            background: var(--gradient-1);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(209,0,86,0.25);
+        }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .item-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #f9f9fb;
+            border-radius: 14px;
+            padding: 16px 18px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .item-row i { font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+        .item-row i.inc { color: #00b894; }
+        .item-row i.exc { color: #e84393; }
+        .item-row span { color: #333; font-size: 0.95rem; line-height: 1.5; }
+
+        /* --- Print / PDF Styles --- */
+        @media print {
+            .main-header, .floating-actions, .off-canvas-menu, .cta-action-bar,
+            .tab-buttons, .tab-pane:not(.active), .main-footer, .cta-bar-inner { display: none !important; }
+            body { background: #fff !important; }
+            .itin-hero {
+                min-height: auto !important;
+                padding: 40px 20px 30px !important;
+                background: linear-gradient(135deg, #d10056 0%, #ff9a44 100%) !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .itin-hero::before { display: none; }
+            .itin-hero-content { padding: 20px !important; }
+            .itin-hero-title { font-size: 2.2rem !important; }
+            .itin-section { padding: 30px 0 20px !important; background: #fff !important; }
+            .day-content-card { box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; break-inside: avoid; }
+            .day-card { break-inside: avoid; margin-bottom: 20px !important; }
+            .timeline::before { display: none; }
+            .tabs-section { padding: 20px 0 !important; }
+            .tabs-header h2 { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .item-row { break-inside: avoid; }
+            .day-pill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .day-content-card::before { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .timeline::before { left: 28px; }
+            .day-number-col { width: 64px; }
+            .day-pill { width: 44px; height: 44px; }
+            .day-pill .day-num { font-size: 1.1rem; }
+            .day-content-card { padding: 20px 18px; transform: none; }
+            .cta-bar-inner { gap: 10px; }
+            .cta-btn { padding: 11px 18px; font-size: 0.88rem; }
+            .cta-bar-label { display: none; }
+            .itin-section { padding: 50px 0 40px; }
+            .tabs-section { padding: 40px 0 60px; }
+            .items-grid { grid-template-columns: 1fr; }
+            .day-card { gap: 16px; }
+        }
+        @media (max-width: 480px) {
+            .day-content-card { border-radius: 14px; }
+            .day-pill { width: 40px; height: 40px; }
+            .day-pill .day-label { display: none; }
+            .day-pill .day-num { font-size: 1rem; }
+            .day-number-col { width: 56px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/919541910480?text=hi,%20i%20want%20to%20know%20more%20about%20kashmir%20tour%20package" class="fab-btn btn-whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+919541910480" class="fab-btn btn-phone" aria-label="Call Now"><i class="fas fa-phone-alt"></i></a>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <div class="brand">
+                <a href="index.html" class="logo-wrapper">
+                    <img src="images/logo circular footer.png" alt="Roy Tour & Travels Logo">
+                    <div class="brand-text">
+                        <span class="company-name">Roy Tour & Travels</span>
+                        <span class="company-quote">Aesthetics of Kashmir</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Off-Canvas Menu -->
+    <div class="off-canvas-menu" id="offCanvas">
+        <div class="off-canvas-header">
+            <span class="company-name">Roy Tour & Travels</span>
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-actions">
+            <a href="tel:+919541910480" class="mobile-btn btn-call"><i class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="https://wa.me/919541910480?text=hi,%20i%20want%20to%20know%20more%20about%20kashmir%20tour%20package" class="mobile-btn btn-whatsapp-mob"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="itin-hero">
+        <div class="itin-hero-overlay"></div>
+        <div class="itin-hero-content">
+            <div class="itin-badge"><i class="fas fa-map-marked-alt"></i> Premium Kashmir Experience</div>
+            <h1 class="itin-hero-title">Kashmir <span>8 Days / 7 Nights</span> Itinerary</h1>
+            <p class="itin-hero-sub">A meticulously crafted journey through the crown jewel of India — from Dal Lake's shimmering waters to Gulmarg's alpine meadows.</p>
+            <div class="itin-meta-chips">
+                <div class="meta-chip"><i class="far fa-calendar-alt"></i> 8 Days / 7 Nights</div>
+                <div class="meta-chip"><i class="fas fa-map-marker-alt"></i> Srinagar · Gulmarg · Pahalgam · Sonamarg</div>
+                <div class="meta-chip"><i class="fas fa-users"></i> Family, Couple & Group</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Action Bar -->
+    <div class="cta-action-bar" id="ctaBar">
+        <div class="container cta-bar-inner">
+            <span class="cta-bar-label">Ready to Book?</span>
+            <a href="tel:+919541910480" class="cta-btn cta-btn-call" id="callNowBtn">
+                <i class="fas fa-phone-alt"></i> Call Now
+            </a>
+            <a href="https://wa.me/919541910480?text=Hi!%20I%20want%20to%20book%20the%20Kashmir%208-Day%20package." class="cta-btn cta-btn-wa" id="whatsappBtn" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button onclick="printItinerary()" class="cta-btn cta-btn-pdf" id="downloadPdfBtn">
+                <i class="fas fa-file-download"></i> Download PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Itinerary Section -->
+    <section class="itin-section">
+        <div class="container">
+            <div class="itin-section-title">
+                <h2>Day-wise Itinerary</h2>
+                <p>Your complete Kashmir journey, planned to perfection — every moment crafted for wonder.</p>
+            </div>
+            <div class="timeline">
+
+                <!-- Day 1 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">1</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-plane-arrival"></i> Arrival in Srinagar — Welcome to Paradise</h3>
+                        <p class="day-card-desc">Touch down at Sheikh ul-Alam International Airport and be greeted by your dedicated Roy Tour & Travels representative. Transfer to your premium hotel or a luxurious houseboat on Dal Lake — your home for the next two nights. After freshening up, enjoy a magical <strong>1-hour Shikara ride</strong> gliding through the serene Dal Lake, past floating gardens, lotus blooms and the iconic houseboats. As dusk settles, savour a welcome dinner with traditional Wazwan flavours.</p>
+                        <div class="day-tags">
+                            <span class="day-tag">✈ Airport Pickup</span>
+                            <span class="day-tag">🛶 Shikara Ride</span>
+                            <span class="day-tag">🌅 Dal Lake</span>
+                            <span class="day-tag">🍽 Welcome Dinner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">2</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-mosque"></i> Srinagar City Tour — Mughal Gardens & Old City</h3>
+                        <p class="day-card-desc">Begin your day with a sunrise view of the Himalayas from the houseboat deck. Post breakfast, embark on a full-day Srinagar sightseeing tour visiting the iconic <strong>Shalimar Bagh</strong>, <strong>Nishat Bagh</strong> (Garden of Pleasure), and the fragrant <strong>Chashme Shahi</strong>. Explore the old Srinagar bazaars at Lal Chowk, visit <strong>Hazratbal Shrine</strong> and the historic <strong>Jamia Masjid</strong>. Wind down with a leisurely walk along the Boulevard road as the sun sets over Dal Lake.</p>
+                        <div class="day-tags">
+                            <span class="day-tag">🌸 Mughal Gardens</span>
+                            <span class="day-tag">🕌 Hazratbal</span>
+                            <span class="day-tag">🛍 Local Bazaars</span>
+                            <span class="day-tag">🌄 Nishat Bagh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">3</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-mountain"></i> Gulmarg — The Meadow of Flowers</h3>
+                        <p class="day-card-desc">After a wholesome breakfast, depart for <strong>Gulmarg</strong> (56 km, ~2 hrs), a high-altitude meadow at 2,730m. Upon arrival, board the world-famous <strong>Gondola Cable Car (Phase 1)</strong> to Kongdori — one of Asia's highest and longest cable car rides, offering breathtaking panoramas of the Himalayas and Nanga Parbat. Enjoy snow activities (seasonal) including <strong>skiing, snowboarding</strong> and pony rides across the flower-dotted meadows. Return to Srinagar by evening. Overnight stay.</p>
+                        <div class="day-tags">
+                            <span class="day-tag">🚡 Gondola Ride</span>
+                            <span class="day-tag">⛷ Snow Activities</span>
+                            <span class="day-tag">🏔 2,730m Altitude</span>
+                            <span class="day-tag">🌿 Alpine Meadows</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">4</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-water"></i> Pahalgam — The Valley of Shepherds</h3>
+                        <p class="day-card-desc">After breakfast, drive to the enchanting <strong>Pahalgam</strong> (97 km, ~3 hrs) — the basecamp for Amarnath Yatra and one of Kashmir's most stunning valleys. Visit <strong>Betaab Valley</strong> (named after the Bollywood film), explore <strong>Aru Valley</strong> with its open meadows and pristine streams, and see the meeting of rivers at <strong>Chandanwari</strong>. Enjoy a pony ride along the Lidder River banks, surrounded by pine forests reflecting in crystal-clear waters. Overnight at Pahalgam.</p>
+                        <div class="day-tags">
+                            <span class="day-tag">🐎 Pony Ride</span>
+                            <span class="day-tag">🌊 Lidder River</span>
+                            <span class="day-tag">🌲 Betaab Valley</span>
+                            <span class="day-tag">🏕 Aru Valley</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">5</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-snowflake"></i> Sonamarg — The Golden Meadow</h3>
+                        <p class="day-card-desc">After checking out from Pahalgam, drive to the majestic <strong>Sonamarg</strong> (125 km, ~4 hrs from Pahalgam). Sonamarg, meaning 'Meadow of Gold', sits at an altitude of 2,800m with glaciers and alpine lakes. Hire a pony or take a local taxi to visit the stunning <strong>Thajiwas Glacier</strong> — a year-round snow glacier just 2 km from town. Explore the banks of the <strong>Sindh River</strong> and enjoy the breathtaking valley views before heading back to Srinagar for overnight stay.</p>
+                        <div class="day-tags">
+                            <span class="day-tag">🏔 Thajiwas Glacier</span>
+                            <span class="day-tag">🌾 Golden Meadow</span>
+                            <span class="day-tag">🏞 Sindh River</span>
+                            <span class="day-tag">❄ Year-round Snow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">6</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-shopping-bag"></i> Srinagar — Leisure, Shopping & Crafts</h3>
+                        <p class="day-card-desc">A relaxed day dedicated to immersing yourself in Kashmiri culture and craftsmanship. Visit the famous <strong>Suffering Moses</strong> and local artisan workshops to see hand-woven <strong>Pashmina shawls</strong>, <strong>Papier-mâché crafts</strong>, <strong>Kashmiri carpets</strong>, and saffron farms. Explore the lively <strong>Polo View Market</strong> for dry fruits, spices and souvenirs. In the evening, take a sunset Shikara cruise or simply relax on the houseboat deck with Kahwa (Kashmiri green tea) and storytelling.</p>
+                        <div class="day-tags">
+                            <span class="day-tag">🧣 Pashmina Shopping</span>
+                            <span class="day-tag">🎨 Artisan Crafts</span>
+                            <span class="day-tag">🛍 Polo View Market</span>
+                            <span class="day-tag">🍵 Kahwa Tea</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">7</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-star"></i> Doodhpathri — The Valley of Milk</h3>
+                        <p class="day-card-desc">Today's hidden gem excursion takes you to <strong>Doodhpathri</strong> (42 km, ~1.5 hrs from Srinagar), a less-explored paradise where milky-white streams flow through vast green meadows — earning it the name "Valley of Milk". The meadows at 2,730m altitude are surrounded by dense forests of pine and fir, with the Himalayas as a backdrop. Enjoy a packed lunch picnic in the meadows, witness wildflowers, and take in the absolute serenity that few tourists experience. Return to Srinagar for a farewell dinner.</p>
+                        <div class="day-tags">
+                            <span class="day-tag">🥛 Valley of Milk</span>
+                            <span class="day-tag">🌼 Wildflowers</span>
+                            <span class="day-tag">🌲 Pine Forests</span>
+                            <span class="day-tag">🍱 Picnic Lunch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 8 -->
+                <div class="day-card">
+                    <div class="day-number-col">
+                        <div class="day-pill"><span class="day-label">Day</span><span class="day-num">8</span></div>
+                    </div>
+                    <div class="day-content-card">
+                        <h3 class="day-card-title"><i class="fas fa-plane-departure"></i> Departure — Until We Meet Again</h3>
+                        <p class="day-card-desc">Your last morning in paradise. After a leisurely breakfast, take a final stroll along the Dal Lake boulevard or enjoy one last Shikara ride to bid farewell to the majestic Himalayas. Check out from the hotel, and transfer to <strong>Sheikh ul-Alam International Airport</strong> for your onward journey. Carry home a heart full of golden memories, the scent of saffron, and the warmth of Kashmiri hospitality — until your next journey with Roy Tour & Travels!</p>
+                        <div class="day-tags">
+                            <span class="day-tag">✈ Airport Drop</span>
+                            <span class="day-tag">🏠 Check-out</span>
+                            <span class="day-tag">📸 Last Memories</span>
+                            <span class="day-tag">💛 Farewell</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end timeline -->
+        </div>
+    </section>
+
+    <!-- Inclusions / Exclusions Tabs -->
+    <section class="tabs-section" id="inclusionsSection">
+        <div class="container">
+            <div class="tabs-header">
+                <h2>What's Included?</h2>
+                <p style="color:#7b7b7b; max-width:500px; margin:0 auto; font-size:1.02rem;">Everything you need to know about your package.</p>
+            </div>
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="inclTab" onclick="switchTab('inclusions')"><i class="fas fa-check-circle"></i> Inclusions</button>
+                <button class="tab-btn" id="exclTab" onclick="switchTab('exclusions')"><i class="fas fa-times-circle"></i> Exclusions</button>
+            </div>
+
+            <!-- Inclusions -->
+            <div class="tab-pane active" id="inclusions">
+                <div class="items-grid">
+                    <div class="item-row"><i class="fas fa-hotel inc"></i><span>Accommodation in premium hotels / deluxe houseboats for 7 nights with daily breakfast & dinner</span></div>
+                    <div class="item-row"><i class="fas fa-car inc"></i><span>All transfers and sightseeing by private air-conditioned vehicle (Innova / Xylo)</span></div>
+                    <div class="item-row"><i class="fas fa-ship inc"></i><span>1-hour Shikara ride on Dal Lake included as per itinerary</span></div>
+                    <div class="item-row"><i class="fas fa-cable-car inc"></i><span>Gondola Cable Car (Phase 1) tickets at Gulmarg included</span></div>
+                    <div class="item-row"><i class="fas fa-user-tie inc"></i><span>Dedicated English-speaking tour guide throughout the journey</span></div>
+                    <div class="item-row"><i class="fas fa-first-aid inc"></i><span>First aid kit and emergency medical assistance on all excursions</span></div>
+                    <div class="item-row"><i class="fas fa-file-alt inc"></i><span>All applicable entry permits, toll taxes, and parking fees included</span></div>
+                    <div class="item-row"><i class="fas fa-plane-arrival inc"></i><span>Airport arrival and departure transfers with meet & greet service</span></div>
+                    <div class="item-row"><i class="fas fa-snowflake inc"></i><span>Snow activity arrangements at Gulmarg (seasonal: sledging, pony rides)</span></div>
+                    <div class="item-row"><i class="fas fa-headset inc"></i><span>24/7 Roy Tour & Travels customer support during the entire trip duration</span></div>
+                </div>
+            </div>
+
+            <!-- Exclusions -->
+            <div class="tab-pane" id="exclusions">
+                <div class="items-grid">
+                    <div class="item-row"><i class="fas fa-plane exc"></i><span>Airfare / train tickets to and from Srinagar (to be arranged by the traveller)</span></div>
+                    <div class="item-row"><i class="fas fa-utensils exc"></i><span>Lunch and beverages during sightseeing days (only breakfast & dinner included)</span></div>
+                    <div class="item-row"><i class="fas fa-cable-car exc"></i><span>Gondola Cable Car Phase 2 (Apharwat Peak) — available at additional cost</span></div>
+                    <div class="item-row"><i class="fas fa-shield-alt exc"></i><span>Travel insurance (strongly recommended; not included in package price)</span></div>
+                    <div class="item-row"><i class="fas fa-horse exc"></i><span>Pony rides at Pahalgam, Sonamarg & Doodhpathri (optional, at your own expense)</span></div>
+                    <div class="item-row"><i class="fas fa-camera exc"></i><span>Camera / monument entry fees at individual tourist sites unless stated otherwise</span></div>
+                    <div class="item-row"><i class="fas fa-spa exc"></i><span>Personal expenses: laundry, phone calls, tips, and any extras of personal nature</span></div>
+                    <div class="item-row"><i class="fas fa-cocktail exc"></i><span>Alcoholic beverages or soft drinks not included at hotels / houseboats</span></div>
+                    <div class="item-row"><i class="fas fa-ambulance exc"></i><span>Medical evacuation or emergency helicopter costs beyond standard first aid</span></div>
+                    <div class="item-row"><i class="fas fa-cloud-rain exc"></i><span>Any costs arising from natural calamities, road blockages, or government-ordered restrictions</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer pt-5 pb-3">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo circular footer.png" alt="Roy Tour & Travels Logo" class="footer-logo-img">
+                        <div class="brand-text">
+                            <span class="company-name">Roy Tour & Travels</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc mt-3">Premium travel experiences in Kashmir. We specialize in customized tours, honeymoon packages, and family vacations.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Top Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">All Packages</a></li>
+                        <li><a href="#">Srinagar</a></li>
+                        <li><a href="#">Gulmarg</a></li>
+                        <li><a href="#">Pahalgam</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone-alt"></i> +91 9541910480 | +91 9541910481</li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919541910480?text=hi,%20i%20want%20to%20know%20more%20about%20kashmir%20tour%20package">WhatsApp Us</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:admin.roytourandtravels@gmail.com">admin.roytourandtravels@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Doodh Ganga, bank building, Karan Nagar, Srinagar, 190001</span></li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/roytourandtravels_?igsh=eDB2NmZtemhnOHpy&utm_source=qr" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61586909061508" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/919541910480" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <ul class="useful-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="developer-credit text-center mt-4">
+                <p>© 2026 Roy Tour & Travels | Developed by <strong>Anees Irshad Bhat</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Tab Switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            document.getElementById(tab === 'inclusions' ? 'inclTab' : 'exclTab').classList.add('active');
+        }
+
+        // PDF Print function - activate inclusions tab before print
+        function printItinerary() {
+            switchTab('inclusions');
+            setTimeout(() => window.print(), 150);
+        }
+
+        // Sticky CTA bar: hide while header is transparent, show after scrolling past header
+        const ctaBar = document.getElementById('ctaBar');
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                ctaBar.style.top = header.offsetHeight + 'px';
+            } else {
+                ctaBar.style.top = '0px';
+            }
+        });
+    </script>
+
+    <script>
+        (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "0xpCIchh_-IuKu116fqwu"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+    </script>
+</body>
+</html>
