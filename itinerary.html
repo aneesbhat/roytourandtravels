@@ -385,7 +385,9 @@
         /* --- Print / PDF Styles --- */
         @media print {
             .main-header, .floating-actions, .off-canvas-menu, .cta-action-bar,
-            .tab-buttons, .tab-pane:not(.active), .main-footer, .cta-bar-inner { display: none !important; }
+            .tab-buttons, .main-footer, .cta-bar-inner { display: none !important; }
+            /* Show ALL tab panes in PDF (both inclusions + exclusions) */
+            .tab-pane { display: block !important; }
             body { background: #fff !important; }
             .itin-hero {
                 min-height: auto !important;
@@ -406,6 +408,21 @@
             .item-row { break-inside: avoid; }
             .day-pill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
             .day-content-card::before { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            /* Print-only section labels for inclusions / exclusions */
+            .print-section-label { display: block !important; }
+        }
+        .print-section-label {
+            display: none;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d10056;
+            border-bottom: 2px solid #d10056;
+            padding-bottom: 6px;
+            margin: 24px 0 14px;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* --- Responsive --- */
@@ -678,6 +695,7 @@
 
             <!-- Inclusions -->
             <div class="tab-pane active" id="inclusions">
+                <p class="print-section-label">✅ What's Included</p>
                 <div class="items-grid">
                     <div class="item-row"><i class="fas fa-hotel inc"></i><span>Accommodation in premium hotels / deluxe houseboats for 7 nights with daily breakfast & dinner</span></div>
                     <div class="item-row"><i class="fas fa-car inc"></i><span>All transfers and sightseeing by private air-conditioned vehicle (Innova / Xylo)</span></div>
@@ -694,6 +712,7 @@
 
             <!-- Exclusions -->
             <div class="tab-pane" id="exclusions">
+                <p class="print-section-label">❌ What's Not Included</p>
                 <div class="items-grid">
                     <div class="item-row"><i class="fas fa-plane exc"></i><span>Airfare / train tickets to and from Srinagar (to be arranged by the traveller)</span></div>
                     <div class="item-row"><i class="fas fa-utensils exc"></i><span>Lunch and beverages during sightseeing days (only breakfast & dinner included)</span></div>
@@ -781,10 +800,9 @@
             document.getElementById(tab === 'inclusions' ? 'inclTab' : 'exclTab').classList.add('active');
         }
 
-        // PDF Print function - activate inclusions tab before print
+        // PDF Print — both inclusions AND exclusions are shown via @media print CSS
         function printItinerary() {
-            switchTab('inclusions');
-            setTimeout(() => window.print(), 150);
+            window.print();
         }
 
         // Sticky CTA bar: hide while header is transparent, show after scrolling past header
