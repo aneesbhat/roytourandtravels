@@ -391,13 +391,25 @@
             body { background: #fff !important; }
             .itin-hero {
                 min-height: auto !important;
-                padding: 40px 20px 30px !important;
+                padding: 60px 20px 40px !important;
+                /* Background gradient for print */
                 background: linear-gradient(135deg, #d10056 0%, #ff9a44 100%) !important;
                 print-color-adjust: exact;
                 -webkit-print-color-adjust: exact;
+                position: relative !important;
             }
-            .itin-hero::before { display: none; }
-            .itin-hero-content { padding: 20px !important; }
+            /* Show the banner image in PDF */
+            .itin-hero::before { 
+                display: block !important; 
+                opacity: 0.3 !important; 
+                content: "" !important;
+                position: absolute !important;
+                inset: 0 !important;
+                background: url('images/premium luxury.jpg') center/cover no-repeat !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            .itin-hero-content { padding: 20px !important; position: relative !important; z-index: 2 !important; }
             .itin-hero-title { font-size: 2.2rem !important; }
             .itin-section { padding: 30px 0 20px !important; background: #fff !important; }
             .day-content-card { box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; break-inside: avoid; }
