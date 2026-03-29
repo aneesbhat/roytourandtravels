@@ -254,7 +254,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     } else {
                         const modalSucc = document.getElementById('modalSuccess');
+                        const modalHeader = document.querySelector('.modal-header-block');
                         form.style.display = 'none';
+                        if (modalHeader) modalHeader.style.display = 'none';
                         if (modalSucc) modalSucc.style.display = 'block';
                     }
                     form.reset();
@@ -373,6 +375,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto';
         setTimeout(() => {
             if (modalBookingForm) { modalBookingForm.style.display = ''; modalBookingForm.reset(); }
+            const modalHeader = document.querySelector('.modal-header-block');
+            if (modalHeader) modalHeader.style.display = '';
             if (modalSuccess) { modalSuccess.style.display = 'none'; }
         }, 400);
     };
